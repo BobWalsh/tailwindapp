@@ -12,4 +12,7 @@
 #
 
 class Thetag < ApplicationRecord
+  belongs_to :user
+  has_many :tagpairs
+  has_many :items, through: :tagpairs
 end

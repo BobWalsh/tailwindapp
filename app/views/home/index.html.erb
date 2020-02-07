@@ -1,0 +1,100 @@
+<% if !current_user %>
+
+<%= javascript_pack_tag 'hello_vue' %>
+
+<div id='hello'>
+  {{message}}
+  <app></app>
+</div>
+
+<%= link_to "Devise Sign up", new_registration_path(User) %><br />
+<%= link_to "Log in", new_session_path(User) %><br />
+<%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class =>"navbar-item" %>
+
+<% else %>
+<!-- real -->
+<div class='container max-w-full bg-gray-900'>
+
+  <div class='container max-w-full workarea flex flex-wrap flex-row p-2'>
+
+    <!-- Tag Col -->
+    <div class='container screen-dbl w-2/12  flex flex-col items-center  bg-green-800 text-white'>
+      <h3 class='tag_list text-md uppercase my-3'>Tags</h3>
+      <div class='overflow-y-scroll bg-green-800 text-white my-0 flex flex-col items-center justify-between w-48'>
+        <% @tags.each do |tag| %>
+        <button type="button" data-id="<%= tag.user_id %>"
+          class="w-40 mt-2 bg-green-dark hover:bg-green-light text-white border border-bg-green-dark rounded px-4 py-1 my-1"><%= tag.name %></button>
+        <% end %>
+      </div>
+    </div>
+
+
+    <!-- Working Area -->
+    <div class='container w-10/12  bg-blue-800 text-white'>
+      <!-- Search and Action Dropdown -->
+      <div class='container  search-action flex flex-row'>
+        <div class=" w-10/12 bg-indigo-dark h-50 p-8">
+          <div class="container mx-auto py-3">
+            <input class="w-4/5 h-10 px-2 rounded mb-2 focus:outline-none focus:shadow-outline text-xl px-8 shadow-lg"
+              type="search" placeholder="Search...">
+            <nav class="flex">
+              <a class="no-underline text-white py-3 px-4 font-medium mr-3 bg-indigo hover:bg-indigo-darker"
+                href="#">Node</a>
+              <a class="no-underline text-white py-3 px-4 font-medium mx-3 bg-indigo-darker hover:bg-indigo"
+                href="#">JavaScript</a>
+              <a class="no-underline text-white py-3 px-4 font-medium mx-3 bg-indigo hover:bg-indigo-darker"
+                href="#">Tailwind CSS</a>
+              <a class="no-underline text-white py-3 px-4 font-medium mx-3 bg-indigo-darker hover:bg-indigo"
+                href="#">CLI</a>
+
+            </nav>
+          </div>
+        </div>
+        <div class=" w-1/5  h-40 bg-blue-800 flex flex-col items-top">
+          <button class="mt-12 mb-4 w-40 mx-auto bg-green-dark hover:bg-green-light text-white border border-bg-green-dark
+          rounded my-1 py-1 ">Action</button>
+        </div>
+      </div>
+
+
+
+      <div class="tablewidth mr-4 ml-4 bg-gray-800 shadow-md rounded my-6">
+        <div class="px-4 py-2 w-full uppercase">
+          <h3 class='mr-2 text-white mx-auto'>Items</h3>
+        </div>
+        <table class="text-left w-full border-collapse">
+          <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
+          <thead>
+            <tr class="text-left w-full border-collapse">
+              <th
+                class="w-2/12 py-4 px-4 bg-grey-800 font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                Date</th>
+              <th
+                class="w-10/12 py-4 px-6 bg-grey-800 font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                Item</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @items.each do |item| %>
+            <tr class='trow'>
+              <td class='py-4 px-6 border-b border-grey-light'><%= item.updated_at.strftime("%a, %m/%d at %I:%M %P" ) %>
+              </td>
+              <td class='py-4 px-6 border-b border-grey-light'><%= item.body %></br>
+                <% item.thetags.each do |thetag| %>
+                <span class='tx-sx'>#<%= thetag.name %></span>
+                <% end %>
+              </td>
+            </tr>
+
+            <% end %>
+
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+<% end %>
