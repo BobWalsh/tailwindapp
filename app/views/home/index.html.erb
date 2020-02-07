@@ -1,12 +1,5 @@
 <% if !current_user %>
 
-<!-- <%= javascript_pack_tag 'hello_vue' %>
-
-<div id='hello'>
-  {{message}}
-  <app></app>
-</div> -->
-
 <%= link_to "Devise Sign up", new_registration_path(User) %><br />
 <%= link_to "Log in", new_session_path(User) %><br />
 <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class =>"navbar-item" %>
