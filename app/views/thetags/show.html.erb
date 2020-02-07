@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @thetag.name %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @thetag.color %>
+</p>
+
+<p>
+  <strong>Is-favorite:</strong>
+  <%= @thetag.is-favorite %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @thetag.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_thetag_path(@thetag) %> |
+<%= link_to 'Back', thetags_path %>

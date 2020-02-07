@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Thetags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Color</th>
+      <th>Is-favorite</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @thetags.each do |thetag| %>
+      <tr>
+        <td><%= thetag.name %></td>
+        <td><%= thetag.color %></td>
+        <td><%= thetag.is-favorite %></td>
+        <td><%= thetag.user_id %></td>
+        <td><%= link_to 'Show', thetag %></td>
+        <td><%= link_to 'Edit', edit_thetag_path(thetag) %></td>
+        <td><%= link_to 'Destroy', thetag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Thetag', new_thetag_path %>
