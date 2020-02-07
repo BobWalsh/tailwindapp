@@ -1,11 +1,11 @@
 <% if !current_user %>
 
-<%= javascript_pack_tag 'hello_vue' %>
+<!-- <%= javascript_pack_tag 'hello_vue' %>
 
 <div id='hello'>
   {{message}}
   <app></app>
-</div>
+</div> -->
 
 <%= link_to "Devise Sign up", new_registration_path(User) %><br />
 <%= link_to "Log in", new_session_path(User) %><br />
